@@ -14,6 +14,19 @@ class Login extends Component {
         errorMsg: ''
     };
 
+    handleSubmit = (e) => {
+        const userID = this.userID.value;
+        const { dispatch } = this.props;
+
+        e.preventDefault();
+
+        if (userID !== '') {
+            dispatch(setAuthedUser(userID));
+        } else {
+            this.setState({ errorMsg : "Choose a Username please !"});
+        }
+    }
+
     render() {
         const { userNames } = this.props;
         const { errorMsg } = this.state;
@@ -24,7 +37,7 @@ class Login extends Component {
                     <Card bg="light" className="text-center">
                         <Card.Header>Login</Card.Header> 
                         <Card.Body>
-                            <Form onSumbit={this.hadleSubmit}>
+                            <Form onSumbit={this.handleSubmit}>
                                 <Form.Group controlId="formGridState">
                                     <Form.Label>Username</Form.Label>
                                     { errorMsg ? ( <p className="text-danger">{errorMsg}</p> ) : null }
