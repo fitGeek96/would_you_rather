@@ -15,6 +15,31 @@ class NewQst extends Component {
         toHome: false
     };
 
+    handleInputChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        this.state({
+            [name]: value
+        });
+    }
+
+    handleSubmit = (e) => {
+        const { optionOne, optionTwo } = this.state;
+        const { dispatch } = this.props;
+
+        e.preventDefault();
+
+        this.setState(
+            {
+                optionOne: '',
+                optionTwo: '',
+                toHome: true
+            },
+            () => dispatch(handleAddQuestion(optionOne, optionTwo))
+        );
+    };
+
     render() {
         return (
             <Fragment>
