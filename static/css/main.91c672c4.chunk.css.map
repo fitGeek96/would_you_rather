@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,EACC,oBACD,CAEA,QACC,oBACD,CAEA,GACC,sBAAuB,CACvB,uBAA0B,CAA1B,sBACD","file":"main.91c672c4.chunk.css","sourcesContent":["a {\r\n\tcolor: rgba(0, 0, 0, 0.5);\r\n}\r\n\r\na:hover {\r\n\tcolor: rgba(0, 0, 0, 0.7);\r\n}\r\n\r\nul {\r\n\tlist-style-type: circle;\r\n\tpadding-inline-start: 0rem;\r\n}\r\n\r\n"]}
