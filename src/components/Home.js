@@ -1,43 +1,47 @@
-import React, {Component, Fragment} from 'react';
-import {connect} from 'react-redux';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import BriefQstList from './BriefQstList';
+import BriefQuestionsList from './BriefQuestionsList';
 
 class Home extends Component {
-    render() {
-        const {answeredQstIDs, unansweredQstIDs} = this.props;
+	render() {
+		const { answeredQuestionIds, unansweredQuestionIds } = this.props;
 
-        return (
-            <Fragment>
-                <Tabs>
-                    <Tab eventKey="unanswered" title="Unanswered Questions">
-                        <BriefQstList
-                            idsList={unansweredQstIDs}
-                            emptyListNote="Create New Questions ..."/>
-                    </Tab>
-                    <Tab eventKey="answered" title="Answered Questions">
-                        <BriefQstList
-                            idsList={answeredQstIDs}
-                            emptyListNote="No answered Questions yet ..."/>
-                    </Tab>
-                </Tabs>
-            </Fragment>
-        );
-    }
+		return (
+			<Fragment>
+				<Tabs>
+					<Tab eventKey="unanswered" title="Unanswered Questions">
+						<BriefQuestionsList
+							idsList={unansweredQuestionIds}
+							emptyListNote="No more Unswered Questions! Time to create some new ones! "
+						/>
+					</Tab>
+					<Tab eventKey="answered" title="Answered Questions">
+						<BriefQuestionsList
+							idsList={answeredQuestionIds}
+							emptyListNote="No Answered Questions yet! What are you waiting for???"
+						/>
+					</Tab>
+				</Tabs>
+			</Fragment>
+		);
+	}
 }
 
-function mapStateToProps({authedUser, questions, users}) {
-    const answeredQstIDs = Object
-        .keys(questions)
-        .filter((id) => users[authedUser].answers.hasOwnProperty(id))
-        .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
-    const unansweredQstIDs = Object
-        .keys(questions)
-        .filter((id) => !users[authedUser].answers.hasOwnProperty(id))
-        .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+function mapStateToProps({ authedUser, questions, users }) {
+	const answeredQuestionIds = Object.keys(questions)
+		.filter((id) => users[authedUser].answers.hasOwnProperty(id))
+		.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-    return {answeredQstIDs, unansweredQstIDs};
+	const unansweredQuestionIds = Object.keys(questions)
+		.filter((id) => !users[authedUser].answers.hasOwnProperty(id))
+		.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
+	return {
+		answeredQuestionIds,
+		unansweredQuestionIds
+	};
 }
 
 export default connect(mapStateToProps)(Home);
