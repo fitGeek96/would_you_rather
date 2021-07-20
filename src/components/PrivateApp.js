@@ -6,7 +6,7 @@ import NavigationBar from './NavigationBar';
 import Home from './Home';
 import NewQuestion from './NewQuestion';
 import QuestionPage from './QuestionPage';
-import LeaderBoard from './LeaderBoard';
+import LeaderBoard from './Leaderboard';
 import PageNotFound from './PageNotFound';
 
 class PrivateApp extends Component {
